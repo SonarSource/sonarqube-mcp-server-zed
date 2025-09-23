@@ -2,10 +2,10 @@ id = "sonarqube-mcp-server"
 name = "SonarQube MCP Server"
 version = "0.0.8"
 schema_version = 1
-authors = ["SonarSource <>"]
-description = "SonarQube MCP Server at enables seamless integration with SonarQube Server or Cloud for code quality and security."
+authors = ["SonarSource <ide-marketplaces@sonarsource.com>"]
+description = "SonarQube MCP Server that enables seamless integration with SonarQube Server or Cloud for code quality and security."
 repository = "https://github.com/SonarSource/sonarqube-mcp-server"
 
 [context_servers.sonarqube]
-name = "SonarQube"
-description = "SonarQube MCP Server for code quality and security analysis"
+name = "SonarQube MCP Server"
+description = "SonarQube MCP Server that enables seamless integration with SonarQube Server or Cloud for code quality and security."
