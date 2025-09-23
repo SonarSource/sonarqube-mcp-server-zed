@@ -1,8 +1,9 @@
 name: Unified Dogfooding scans
 
 on:
-  workflow_dispatch:
+  schedule:
     - cron: '0 4 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,30 +25,29 @@ jobs:
         with:
           secrets: |
             development/kv/data/sonarcloud token | SQC_EU_TOKEN;
-            development/kv/data/sonarcloud url | SQC_EU_URL;
             
             development/kv/data/next token | SQS_TOKEN;
             development/kv/data/next url | SQS_URL;
             
             development/kv/data/sonarqube-us token | SQC_US_TOKEN;
-            development/kv/data/sonarqube-us url | SQC_US_URL;
+
       - name: SQC-EU Scan
         uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQS_TOKEN }}
-          SONAR_REGION: eu
         with:
           args: >
             -Dsonar.organization=sonarsource
+
       - name: SQS Scan
         uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQS_TOKEN }}
           SONAR_HOST_URL: ${{ fromJSON(steps.secrets.outputs.vault).SQS_URL }}
-          SONAR_REGION: eu
         with:
           args: >
             -Dsonar.projectKey=sonarsource
+
       - name: SQC-US Scan
         uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:

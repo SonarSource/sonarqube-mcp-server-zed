@@ -5,6 +5,9 @@ on:
       - master
       - branch-*
       - dogfood-*
+  pull_request:
+  merge_group:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -35,12 +38,10 @@ jobs:
         with:
           secrets: |
             development/kv/data/sonarcloud token | SQC_EU_TOKEN;
-            development/kv/data/sonarcloud url | SQC_EU_URL;
       - name: SQC-EU Scan
         uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQC_EU_TOKEN }}
-          SONAR_REGION: eu
         with:
           args: >
             -Dsonar.organization=sonarsource
