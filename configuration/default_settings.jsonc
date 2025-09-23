@@ -1,0 +1,7 @@
+{
+  "sonarqube_token": "YOUR_SONARQUBE_USER_TOKEN",
+  // Only if using SonarQube Server
+  "sonarqube_url": "YOUR_SONARQUBE_SERVER_URL",
+  // Only if using SonarQube Cloud
+  "sonarqube_org": "SONARQUBE_ORGANIZATION_KEY"
+}
