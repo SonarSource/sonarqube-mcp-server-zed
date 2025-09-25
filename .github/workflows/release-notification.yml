@@ -1,0 +1,25 @@
+name: Release Notification
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+  checks: read
+
+jobs:
+  notify:
+    runs-on: github-ubuntu-latest-s # Public GitHub hosted runner required, Self-Hosted runners do not support Docker-in-Docker
+    permissions:
+      id-token: write
+    steps:
+      - name: Notify Slack of Successful Release
+        uses: ./.github/actions/slack-notify
+        with:
+          slack_channel: 'squad-ide-mcp-server'
+          slack_title: 'Successful Release'
+          slack_message: |
+            Successfully released ${{ github.repository }}
+          slack_color: 'good'

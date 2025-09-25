@@ -15,10 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - name: Build extension
-        run: cargo build
+        run: cargo build --release
       - name: Get Repox Credentials from Vault
         id: secrets
         uses: SonarSource/vault-action-wrapper@v3

@@ -1,7 +1,9 @@
 {
   "sonarqube_token": "YOUR_SONARQUBE_USER_TOKEN",
-  // Empty if using SonarQube Cloud
+  /// Only if using SonarQube Server
   "sonarqube_url": "YOUR_SONARQUBE_SERVER_URL",
-  // Empty if using SonarQube Server
-  "sonarqube_org": "SONARQUBE_ORGANIZATION_KEY"
+  /// Only if using SonarQube Cloud
+  "sonarqube_org": "SONARQUBE_ORGANIZATION_KEY",
+  /// Path to your Docker executable
+  "docker_path": "/usr/bin/docker"
 }

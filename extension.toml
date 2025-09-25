@@ -6,6 +6,6 @@ authors = ["SonarSource <ide-marketplaces@sonarsource.com>"]
 description = "SonarQube MCP Server that enables seamless integration with SonarQube Server or Cloud for code quality and security."
 repository = "https://github.com/SonarSource/sonarqube-mcp-server"
 
-[context_servers.sonarqube]
+[context_servers.sonarqube-mcp-server]
 name = "SonarQube MCP Server"
 description = "SonarQube MCP Server that enables seamless integration with SonarQube Server or Cloud for code quality and security."
