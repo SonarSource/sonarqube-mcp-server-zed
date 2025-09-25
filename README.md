@@ -22,6 +22,6 @@ When using SonarQube Server:
 }
 ```
 
-- `docker_path`: Path to docker executable. Examples:
+The `docker_path` is the path to a docker executable. Examples:
   - Linux/macOS: `"/usr/bin/docker"` or `"/usr/local/bin/docker"`
   - Windows: `"C:\Program Files\Docker\Docker\resources\bin\docker.exe"`
