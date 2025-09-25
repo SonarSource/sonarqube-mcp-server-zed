@@ -1,15 +1,15 @@
 [package]
-name = "mcp_server_sonarqube"
+name = "sonarqube_mcp_server"
 version = "0.0.8"
 edition = "2021"
 publish = false
 license = "Apache-2.0"
 
 [lib]
-path = "src/mcp_server_sonarqube.rs"
+path = "src/sonarqube_mcp_server.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
 serde = "1.0"
-schemars = "0.8"
-zed_extension_api = "0.5.0"
+schemars = "1.0.4"
+zed_extension_api = "0.7.0"

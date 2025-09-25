@@ -1,17 +1,16 @@
 use schemars::JsonSchema;
 use serde::Deserialize;
 use zed::settings::ContextServerSettings;
-use zed_extension_api::{
-    self as zed, serde_json, Command, ContextServerConfiguration, ContextServerId, Project, Result,
-};
+use zed_extension_api::{self as zed, serde_json, Command, ContextServerConfiguration, ContextServerId, Project, Result};
 
 const DOCKER_IMAGE: &str = "mcp/sonarqube";
 
 #[derive(Debug, Deserialize, JsonSchema)]
 struct SonarQubeContextServerSettings {
     sonarqube_token: String,
-    sonarqube_url: String,
-    sonarqube_org: String,
+    sonarqube_url: Option<String>,
+    sonarqube_org: Option<String>,
+    docker_path: String
 }
 
 struct SonarQubeModelContextExtension;
@@ -26,15 +25,14 @@ impl zed::Extension for SonarQubeModelContextExtension {
         _context_server_id: &ContextServerId,
         _project: &Project,
     ) -> Result<Command> {
-        let settings = ContextServerSettings::for_project("mcp-server-sonarqube", _project)?;
+        let settings = ContextServerSettings::for_project("sonarqube-mcp-server", _project)?;
         let Some(settings) = settings.settings else {
             return Err("Missing SonarQube settings".into());
         };
-        let settings: SonarQubeContextServerSettings =
-            serde_json::from_value(settings).map_err(|e| e.to_string())?;
+        let settings: SonarQubeContextServerSettings = serde_json::from_value(settings).map_err(|e| e.to_string())?;
 
         Ok(Command {
-            command: "docker".to_string(),
+            command: settings.docker_path,
             args: vec![
                 "run".to_string(),
                 "-i".to_string(),
@@ -48,9 +46,9 @@ impl zed::Extension for SonarQubeModelContextExtension {
                 DOCKER_IMAGE.to_string()
             ],
             env: vec![
-                ("SONARQUBE_TOKEN".to_string(), settings.sonarqube_token),
-                ("SONARQUBE_URL".to_string(), settings.sonarqube_url),
-                ("SONARQUBE_ORG".to_string(), settings.sonarqube_org)
+                ("SONARQUBE_TOKEN".into(), settings.sonarqube_token),
+                ("SONARQUBE_URL".into(), settings.sonarqube_url.unwrap_or("".to_string())),
+                ("SONARQUBE_ORG".into(), settings.sonarqube_org.unwrap_or("".to_string()))
             ],
         })
     }

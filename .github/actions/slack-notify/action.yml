@@ -1,0 +1,38 @@
+name: 'Slack Notification'
+description: 'Send a Slack notification with customizable message'
+inputs:
+  slack_channel:
+    description: 'The Slack channel to send the notification to'
+    required: true
+  slack_title:
+    description: 'The title of the Slack message'
+    required: true
+  slack_message:
+    description: 'The body of the Slack message'
+    required: true
+  slack_color:
+    description: 'The color of the Slack message (good, warning, danger, or hex color)'
+    required: false
+    default: 'good'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Vault Secrets
+      id: secrets
+      uses: SonarSource/vault-action-wrapper@v3
+      with:
+        secrets: |
+          development/kv/data/slack token | SLACK_TOKEN;
+
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2.3.3
+      shell: bash
+      env:
+        SLACK_TOKEN: >-
+          ${{ fromJSON(steps.secrets.outputs.vault).SLACK_TOKEN }}
+        SLACK_CHANNEL: ${{ inputs.slack_channel }}
+        SLACK_TITLE: ${{ inputs.slack_title }}
+        SLACK_MESSAGE: ${{ inputs.slack_message }}
+        SLACK_USERNAME: BuildBot
+        SLACK_COLOR: ${{ inputs.slack_color }}
