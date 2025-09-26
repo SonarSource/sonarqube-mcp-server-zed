@@ -41,7 +41,7 @@ impl zed::Extension for SonarQubeModelContextExtension {
         _context_server_id: &ContextServerId,
         _project: &Project,
     ) -> Result<Command> {
-        let settings = ContextServerSettings::for_project("sonarqube-mcp-server", _project)?;
+        let settings = ContextServerSettings::for_project("mcp-server-sonarqube", _project)?;
         let Some(settings) = settings.settings else {
             return Err("Missing SonarQube settings".into());
         };
