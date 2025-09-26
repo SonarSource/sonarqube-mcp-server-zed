@@ -1,8 +1,10 @@
 # SonarQube MCP Server Zed Extension
 
-A SonarQube MCP Server extension for Zed. It runs within a Docker container.
+A SonarQube MCP Server extension for Zed, running inside a Docker container.
 
-When using SonarQube Cloud:
+## Installation
+
+* When using SonarQube Cloud:
 
 ```json
 {
@@ -12,7 +14,7 @@ When using SonarQube Cloud:
 }
 ```
 
-When using SonarQube Server:
+* When using SonarQube Server:
 
 ```json
 {
@@ -23,5 +25,11 @@ When using SonarQube Server:
 ```
 
 The `docker_path` is the path to a docker executable. Examples:
-  - Linux/macOS: `"/usr/bin/docker"` or `"/usr/local/bin/docker"`
-  - Windows: `"C:\Program Files\Docker\Docker\resources\bin\docker.exe"`
+  - Linux/macOS: `/usr/bin/docker` or `/usr/local/bin/docker`
+  - Windows: `C:\Program Files\Docker\Docker\resources\bin\docker.exe`
+
+## Build
+
+Run the following command to build the extension:
+
+`cargo build`
