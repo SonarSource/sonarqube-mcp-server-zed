@@ -1,6 +1,6 @@
 id = "mcp-server-sonarqube"
 name = "SonarQube MCP Server"
-version = "1.0.1"
+version = "1.1.0"
 schema_version = 1
 authors = ["SonarSource <ide-marketplaces@sonarsource.com>"]
 description = "SonarQube MCP Server that enables seamless integration with SonarQube Server or Cloud for code quality and security."
