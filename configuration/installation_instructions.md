@@ -2,6 +2,6 @@ To generate a token, you can check the following [documentation](https://docs.so
 
 When using SonarQube Cloud, you should provide the [organization key](https://sonarcloud.io/account/organizations).
 
-When using SonarQube Server, you should provide the server URL.
+When using SonarQube Server or SonarQube Cloud US, you should provide the server URL.
 
 Provide the path to the docker executable.

@@ -14,6 +14,12 @@ A SonarQube MCP Server extension for Zed, running inside a Docker container.
 }
 ```
 
+If using SonarQube Cloud US, add:
+
+```json
+"sonarqube_url": "https://sonarqube.us"
+```
+
 * When using SonarQube Server:
 
 ```json
