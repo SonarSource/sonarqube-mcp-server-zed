@@ -2,7 +2,7 @@
  * SonarQube MCP Server Zed Extension
  * The MIT License (MIT)
 
- * Copyright (c) 2025 SonarSource Sàrl
+ * Copyright (c) SonarSource Sàrl
  * mailto:info AT sonarsource DOT com
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
