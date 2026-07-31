@@ -14,7 +14,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Build extension
         run: cargo build --release
       - name: Get Repox Credentials from Vault
@@ -30,7 +30,7 @@ jobs:
             development/kv/data/sonarqube-us token | SQC_US_TOKEN;
 
       - name: SQC-EU Scan
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        uses: SonarSource/sonarqube-scan-action@22918119ff8e1ca75a623e15c8296b6ea4fbe28f # v8.2.1
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQS_TOKEN }}
         with:
@@ -38,7 +38,7 @@ jobs:
             -Dsonar.organization=sonarsource
 
       - name: SQS Scan
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        uses: SonarSource/sonarqube-scan-action@22918119ff8e1ca75a623e15c8296b6ea4fbe28f # v8.2.1
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQS_TOKEN }}
           SONAR_HOST_URL: ${{ fromJSON(steps.secrets.outputs.vault).SQS_URL }}
@@ -47,7 +47,7 @@ jobs:
             -Dsonar.projectKey=sonarsource
 
       - name: SQC-US Scan
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        uses: SonarSource/sonarqube-scan-action@22918119ff8e1ca75a623e15c8296b6ea4fbe28f # v8.2.1
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQS_TOKEN }}
           SONAR_REGION: us
