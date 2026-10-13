@@ -28,7 +28,7 @@ use serde::Deserialize;
 use zed::settings::ContextServerSettings;
 use zed_extension_api::{self as zed, serde_json, Command, ContextServerConfiguration, ContextServerId, Project, Result};
 
-const DOCKER_IMAGE: &str = "mcp/sonarqube";
+const DOCKER_IMAGE: &str = "sonarsource/sonarqube-mcp";
 
 #[derive(Debug, Deserialize, JsonSchema)]
 struct SonarQubeContextServerSettings {
@@ -60,6 +60,8 @@ impl zed::Extension for SonarQubeModelContextExtension {
             command: settings.docker_path,
             args: vec![
                 "run".to_string(),
+                "--init".to_string(),
+                "--pull=always".to_string(),
                 "-i".to_string(),
                 "--rm".to_string(),
                 "-e".to_string(),
