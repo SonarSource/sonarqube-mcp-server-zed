@@ -61,7 +61,6 @@ impl zed::Extension for SonarQubeModelContextExtension {
             args: vec![
                 "run".to_string(),
                 "--init".to_string(),
-                "--pull=always".to_string(),
                 "-i".to_string(),
                 "--rm".to_string(),
                 "-e".to_string(),
