@@ -27,7 +27,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Build extension
         run: cargo build --release
       - name: Get Repox Credentials from Vault
@@ -37,7 +37,7 @@ jobs:
           secrets: |
             development/kv/data/sonarcloud token | SQC_EU_TOKEN;
       - name: SQC-EU Scan
-        uses: SonarSource/sonarqube-scan-action@v6.0.0
+        uses: SonarSource/sonarqube-scan-action@e805d875275f728fac1885b413934be6d7c63f65 # v8.4.1
         env:
           SONAR_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).SQC_EU_TOKEN }}
         with:
