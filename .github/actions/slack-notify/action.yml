@@ -26,7 +26,7 @@ runs:
           development/kv/data/slack token | SLACK_TOKEN;
 
     - name: Slack Notification
-      uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2.3.3
+      uses: step-security/action-slack-notify@e4cdee14a905d9da46ba47ad9309704407d8cd79 # v2.4.0
       shell: bash
       env:
         SLACK_TOKEN: >-
